@@ -1,0 +1,14 @@
+server:
+  port: 3998
+
+eureka:
+  instance:
+    hostname: ${hostname}
+  client:
+    registerWithEureka: false
+    fetchRegistry: false # 유레카는 노출될 필요가 없어서 false로 넣었음 true만 노출됨.
+    serviceUrl:
+      defaultZone:
+        - ${protocol}://${eureka.instance.hostname}:${server.port}/eureka/
+  server:
+    waitTimeInMsWhenSyncEmpty: 30000 # 30초에 한번씩 인스턴스 검색
