@@ -1,17 +1,7 @@
 server:
-  port: 3000
-#  host: 172.31.39.23
-  servlet:
-    session:
-      cookie.name: bfb4c74f0
+  port: 3002
 
 spring:
-  # 레디스 설정
-  data:
-    redis:
-      host: ${redis.host}
-      port: ${redis.port}
-
   # 데이터 베이스 설정
   datasource:
     driverClassName: oracle.jdbc.driver.OracleDriver
@@ -29,10 +19,11 @@ spring:
     hibernate:
       ddlAuto: ${ddl.auto}
 
-  # 타임리프 설정
-  thymeleaf:
-    cache: false
-    prefix: file:src/main/resources/templates/
+# 로거 설정
+logging:
+  level:
+    org.hibernate.type: trace
+    org.hibernate.orm.jdbc.bind: trace
 
   # 파일 업로드 용량 설정
   servlet:
@@ -40,12 +31,6 @@ spring:
       maxFileSize: 20MB
       maxRequestSize: 60MB
       fileSizeThreshold: 30MB #30메가까지는 램 메모리에 넣고 넘으면 임시로 다른곳에 저장하는거
-
-# 로거 설정
-logging:
-  level:
-    org.hibernate.type: trace
-    org.hibernate.orm.jdbc.bind: trace
 
 # 파일 업로드 경로
 file:
@@ -66,7 +51,7 @@ springdoc:
     disable-swagger-default-url: true
     doc-expansion: none
   paths-to-match:
-    - /api/**
+    - /**
 
 # 유레카 설정
 eureka:
